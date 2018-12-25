@@ -16,12 +16,13 @@ mongoose.Promise = global.Promise
 app.use(cors())
 app.use(bodyParser.json())
 app.use(express.static('../frontend/build'))
-/* app.use(middleware.logger)
- */
+app.use(middleware.logger)
+
 app.use('/api/users', usersRouter)
 app.use('/api/login', loginRouter)
 app.use('/api/messages', messagesRouter)
 
+app.disable("x-powered-by");
 
 const server = http.createServer(app)
 

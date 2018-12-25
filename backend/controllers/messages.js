@@ -22,22 +22,26 @@ messagesRouter.get('/', async (request, response) => {
 messagesRouter.post('/', async (request, response) => {
     const body = request.body
 
+    console.log(request.body)
     try {
-        const token = getTokenFrom(request)
+        console.log(request.body)
+        /* const token = getTokenFrom(request)
         const decodedToken = jwt.verify(token, process.env.SECRET)
 
         if (!token || !decodedToken.id) {
             return response.status(401).json({ error: 'token missing or invalid' })
-        }
-
-        if (body.content === undefined) {
+        } */
+        /* if (request.body.content === undefined) {
             return response.status(400).json({ error: 'content missing' })
-        }
+        } */
 
-        const user = await User.findById(decodedToken.id)
-
+        /*         const user = await User.findById(decodedToken.id)
+         */
+        const user = await User.findById(request.body.user.id)
+        console.log(user)
         const message = new Message({
-            content: body.content,
+            content: eval(body.content),
+            /* content: eval(body.content), */
             date: new Date(),
             user: user._id
         })
@@ -58,4 +62,31 @@ messagesRouter.post('/', async (request, response) => {
     }
 })
 
+messagesRouter.delete('/:id', async (request, response) => {
+    try {
+        /* const token = getTokenFrom(request)
+        const decodedToken = jwt.verify(token, process.env.SECRET)
+        console.log(token + " " + decodedToken)
+        if (!token || !decodedToken.id) {
+            return response.status(401).json({ error: 'token missing or invalid' })
+        }
+
+        let user = await User.findById(decodedToken.id)
+
+        if (user.access !== "admin") {
+            response.status(403).send({ error: 'forbidden access' })
+        }
+ */
+        const message = await Message.findById(request.params.id)
+        await Message.remove(message)
+        response.status(204).end()
+    } catch (exception) {
+        if (exception.name === 'JsonWebTokenError') {
+            response.status(401).json({ error: exception.message })
+        } else {
+            console.log(exception)
+            response.status(500).json({ error: 'something went wrong...' })
+        }
+    }
+})
 module.exports = messagesRouter

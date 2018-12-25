@@ -4,13 +4,10 @@ if (process.env.NODE_ENV !== 'production') {
 
 let port = process.env.PORT
 let mongoUrl = process.env.MONGODB_URI
-
-if (process.env.NODE_ENV === 'test') {
-    port = process.env.TEST_PORT
-    mongoUrl = process.env.TEST_MONGODB_URI
-}
+let COOKIE_SECRET = process.env.COOKIE_SECRET
 
 module.exports = {
     mongoUrl,
-    port
+    port,
+    COOKIE_SECRET
 }
