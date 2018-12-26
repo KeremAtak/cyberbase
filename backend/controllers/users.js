@@ -21,9 +21,7 @@ usersRouter.post('/', async (request, response) => {
 
     /* if (!strongPassword(body.password)) {
       return response.status(500).json({ error: 'Weak password' })
-    } */
-
-    /* const saltRounds = 10
+    }  const saltRounds = 10
     const passwordHash = await bcrypt.hash(body.password, saltRounds) */
 
     const user = new User({

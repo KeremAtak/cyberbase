@@ -6,12 +6,10 @@ const User = require('../models/user')
 loginRouter.post('/', async (request, response) => {
   const body = request.body
 
-  const user = await User.findOne({ username: request.body.username })
-  /* const passwordCorrect = user === null ?
-    false : await bcrypt.compare(body.password, user.passwordHash) */
+  const user = await User.findOne({ username: body.username })
   const passwordCorrect = user === null ?
-    false :
-    await body.password === user.password
+    /* false : await bcrypt.compare(body.password, user.passwordHash) */
+    false : await body.password === user.password
 
   if (!(user && passwordCorrect)) {
     return response.status(401).send({ error: 'invalid username or password' })
@@ -23,8 +21,8 @@ loginRouter.post('/', async (request, response) => {
     access: user.access
   }
 
-/*   const token = jwt.sign(userForToken, process.env.SECRET)
- */
+  /*   const token = jwt.sign(userForToken, process.env.SECRET)
+   */
   response.status(200).send({ /* token, */ id: user._id, username: user.username })
 })
 
