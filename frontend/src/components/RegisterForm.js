@@ -2,6 +2,7 @@ import React from 'react';
 import '../styles.css'
 import loginService from '../services/login'
 import messageService from '../services/messages'
+import protocol from '../Protocol'
 
 class RegisterForm extends React.Component {
 
@@ -21,7 +22,7 @@ class RegisterForm extends React.Component {
 				password: this.state.password
 			})
 			this.setState({ username: '', password: '' })
-			window.location.replace("http://localhost:3000/login");
+			window.location.replace(protocol + "://localhost:3000/login");
 		} catch (exception) {
 			alert(exception)
 		}

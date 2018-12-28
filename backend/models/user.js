@@ -2,7 +2,6 @@ const mongoose = require('mongoose')
 
 const userSchema = new mongoose.Schema({
   username: String,
-  /* passwordHash: String, */
   password: String,
   messages: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Message' }],
   admin: String,
@@ -15,7 +14,6 @@ userSchema.statics.format = (user) => {
     username: user.username,
     messages: user.messages,
     password: user.password,
-    /* passwordHash: user.passwordHash, */
     access: user.access
   }
 }
