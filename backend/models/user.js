@@ -14,8 +14,8 @@ userSchema.statics.format = (user) => {
     id: user.id,
     username: user.username,
     messages: user.messages,
-    passwordHash: user.passwordHash,
-    /* password: user.password, */
+    password: user.password,
+    /* passwordHash: user.passwordHash, */
     access: user.access
   }
 }

@@ -8,7 +8,7 @@ const login = async (credentials) => {
 }
 
 const register = async (credentials) => {
-  const response = await axios.post(protocol + 'http://localhost:3001/api/users', credentials)
+  const response = await axios.post(protocol + '://localhost:3001/api/users', credentials)
   return response.data
 }
 
