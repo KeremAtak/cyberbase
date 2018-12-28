@@ -9,5 +9,5 @@ let COOKIE_SECRET = process.env.COOKIE_SECRET
 module.exports = {
     mongoUrl,
     port,
-    COOKIE_SECRET
+    COOKIE_SECRET,
 }

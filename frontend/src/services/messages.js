@@ -1,5 +1,7 @@
 import axios from 'axios'
-const baseUrl = 'http://localhost:3001/api/messages'
+import protocol from '../Protocol'
+
+const baseUrl = protocol + '://localhost:3001/api/messages'
 
 let token = null
 

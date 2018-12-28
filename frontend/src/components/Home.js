@@ -37,7 +37,7 @@ class Home extends React.Component {
 				user: null
 			})
 		} catch (error) {
-			alert(error)
+			console.log(error)
 		}
 	}
 

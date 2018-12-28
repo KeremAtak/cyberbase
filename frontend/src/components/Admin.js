@@ -8,6 +8,7 @@ class Admin extends React.Component {
         super()
         this.state = {
             messages: [],
+            logs: [],
             user: window.localStorage.getItem('loggedUser')
         }
     }
@@ -18,6 +19,7 @@ class Admin extends React.Component {
             .then(messages => {
                 this.setState({ messages })
             })
+
     }
 
     viewMessages = () => {
@@ -42,8 +44,13 @@ class Admin extends React.Component {
                     <div class="illustration">
                         <i class="icon ion-ios-locked-outline"></i>
                     </div>
+                    Messages:
                     <ul>
                         {this.viewMessages()}
+                    </ul>
+                    Logs:
+                    <ul>
+                        {this.viewLogs()}
                     </ul>
                     <a href='/'>Back to main page</a>
                 </form>
