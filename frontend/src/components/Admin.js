@@ -48,10 +48,6 @@ class Admin extends React.Component {
                     <ul>
                         {this.viewMessages()}
                     </ul>
-                    Logs:
-                    <ul>
-                        {this.viewLogs()}
-                    </ul>
                     <a href='/'>Back to main page</a>
                 </form>
             </div >

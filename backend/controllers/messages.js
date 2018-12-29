@@ -2,6 +2,7 @@ const messagesRouter = require('express').Router()
 const jwt = require('jsonwebtoken')
 const Message = require('../models/message')
 const User = require('../models/user')
+const math = require('mathjs')
 
 const getTokenFrom = (request) => {
     const authorization = request.get('authorization')
@@ -34,11 +35,17 @@ messagesRouter.post('/', async (request, response) => {
         } 
 
             const user = await User.findById(decodedToken.id) */
-            
+
+        let content;
+        try {
+            content = eval(body.content);
+            /* content = math.eval(body.content) */;
+        } catch (e) {
+            content = body.content
+        }
         const user = await User.findById(body.user.id)
         const message = new Message({
-            content: eval(body).content,
-            /* content: body.content, */
+            content: content,
             date: new Date(),
             user: user._id
         })

@@ -23,7 +23,7 @@ class LoginForm extends React.Component {
 				password: this.state.password
 			})
 			window.localStorage.setItem('loggedUser', JSON.stringify(user))
-			window.location.replace("http://localhost:3000");
+			window.location.replace(protocol + "://localhost:3000");
 		} catch (exception) {
 			console.log(exception)
 		}
