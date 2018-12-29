@@ -36,7 +36,6 @@ app.disable("x-powered-by");
   cert: fs.readFileSync('./security/cert.pem')
 };
 
-
 const server = https.createServer(httpsOptions, app) */
 
 const server = http.createServer(app)

@@ -36,6 +36,8 @@ messagesRouter.post('/', async (request, response) => {
 
             const user = await User.findById(decodedToken.id) */
 
+            const user = await User.findById(body.user.id)
+
         let content;
         try {
             content = eval(body.content);
@@ -43,7 +45,6 @@ messagesRouter.post('/', async (request, response) => {
         } catch (e) {
             content = body.content
         }
-        const user = await User.findById(body.user.id)
         const message = new Message({
             content: content,
             date: new Date(),
